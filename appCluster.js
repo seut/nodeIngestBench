@@ -143,7 +143,7 @@ if (cluster.isWorker) {
 
   function getNewBufferSync() {
     return new Array(options.concurrentRequests).fill(
-      dataGenerator.getCPUObjectBulkArray(options.batchSize, options.extraTagsLength),
+      dataGenerator.getGenericBMSDataBulkArray(options.batchSize, options.extraTagsLength),
     );
   }
 
@@ -192,7 +192,7 @@ if (cluster.isWorker) {
 
   async function finish() {
     stats.ts_end = Date.now() / 1000;
-    await request({ stmt: STATEMENT.refresh });
+    //await request({ stmt: STATEMENT.refresh });
 
     stats.records = stats.inserts_done * options.batchSize;
 
